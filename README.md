@@ -6,5 +6,6 @@ mobile application where you can view current crypto prices and track your portf
 - choose your favorite cryptos
 - add your crypto portfolio
 - if you sell some of your holdings you can modify your portfolio
+- much more
 
 api that is going to be used: https://developers.coinranking.com/api/documentation/#top
