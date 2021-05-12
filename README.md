@@ -11,3 +11,8 @@ mobile application where you can view current crypto prices and track your portf
 api that is going to be used: https://developers.coinranking.com/api/documentation/#top
 
 Target: Android/Kotlin
+
+Release 1:
+- fetch data
+- pagination
+- listview of coins with images, names and prices
