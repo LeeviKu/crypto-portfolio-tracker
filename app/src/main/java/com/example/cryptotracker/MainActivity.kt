@@ -1,14 +1,13 @@
 package com.example.cryptotracker
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -27,12 +26,13 @@ class MainActivity : AppCompatActivity() {
         lateinit var pageNumberView: TextView
         lateinit var previousButton: Button
         lateinit var searchTextInput: TextInputEditText
+        lateinit var data: List<CoinX>
         var pageNumber = 0
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
             listView = findViewById(R.id.listView)
-            pageNumberView = findViewById(R.id.textView3)
+            pageNumberView = findViewById(R.id.pageNumber)
             previousButton = findViewById(R.id.button)
             searchTextInput = findViewById(R.id.searchTextInput)
             searchTextInput.addTextChangedListener(object: TextWatcher {
@@ -52,11 +52,18 @@ class MainActivity : AppCompatActivity() {
             previousButton.isEnabled = false
             val url = URL("https://api.coinranking.com/v2/coins?limit=100")
             urlToCoins(url) {
+                if (it !== null) {
+                    data = it
+                }
                 itemsAdapter = CustomAdapter(it, this)
                 listView.adapter = itemsAdapter
                 (listView.adapter as CustomAdapter).notifyDataSetChanged()
             }
 
+        }
+
+        override fun onBackPressed() {
+            //Do nothing
         }
 
         fun urlToCoins(url : URL, callback: (coins: List<CoinX>?) -> Unit) {
@@ -72,6 +79,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        fun openPortfolio(View: View) {
+            val intent = Intent(this, Portfolio::class.java)
+            startActivity(intent)
         }
 
         fun nextPage(view : View) {

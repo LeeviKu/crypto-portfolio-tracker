@@ -28,11 +28,9 @@
             android:id="@+id/searchLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/portfolio">
+            app:layout_constraintTop_toBottomOf="@+id/chooseCryptoHeader">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchTextInput"
@@ -42,20 +40,20 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <TextView
             android:id="@+id/header"
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:text="Coin:"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/listView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listView"
@@ -85,13 +83,15 @@
             android:id="@+id/priceTextView"
             android:layout_width="125dp"
             android:layout_height="30dp"
+            android:layout_marginStart="4dp"
             android:text="Price:"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/listView"
             app:layout_constraintStart_toEndOf="@+id/header"
-            app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/searchLayout"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/change"
@@ -124,33 +124,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/nextPage"
             app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/listView"
+            app:layout_constraintTop_toTopOf="@+id/listView"
             app:layout_constraintVertical_bias="1.0" />
 
-        <Button
-            android:id="@+id/portfolio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My portfolio"
-            android:textAllCaps="false"
-            android:onClick="openPortfolio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/appHeader"
+            android:id="@+id/chooseCryptoHeader"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:text="Crypto market:"
+            android:layout_height="49dp"
+            android:gravity="center"
+            android:text="Choose crypto"
             android:textStyle="bold"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/searchLayout"
-            app:layout_constraintEnd_toStartOf="@+id/portfolio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

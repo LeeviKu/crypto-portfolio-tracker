@@ -17,6 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".CoinActivity"></activity>
+        <activity android:name=".Portfolio"></activity>
+        <activity android:name=".ChooseHoldingToChange"></activity>
+        <activity android:name=".AddHoldingChange"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

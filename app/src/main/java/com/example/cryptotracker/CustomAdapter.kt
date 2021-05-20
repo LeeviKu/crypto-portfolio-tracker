@@ -1,5 +1,6 @@
 package com.example.cryptotracker
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,6 @@ import coil.ImageLoader
 import coil.api.load
 import coil.decode.SvgDecoder
 import coil.request.LoadRequest
-import org.w3c.dom.Text
 import java.util.*
 
 class CustomAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatActivity) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -22,10 +22,10 @@ class CustomAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatAc
      * (custom ViewHolder).
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.listText)
+        val name: TextView = view.findViewById(R.id.listName)
         val img: ImageView = view.findViewById(R.id.icon)
-        val price: TextView = view.findViewById(R.id.listText2)
-        val change: TextView = view.findViewById(R.id.listText3)
+        val price: TextView = view.findViewById(R.id.listPrice)
+        val change: TextView = view.findViewById(R.id.listChange)
         var pos = -1
 
         init {
@@ -51,12 +51,17 @@ class CustomAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatAc
         // contents of the view with that element
         Log.d("test", dataSet?.get(position)?.name.toString())
         viewHolder.name.text = dataSet?.get(position)?.name
-        val twoDigitPrice = String.format("%.3f", dataSet?.get(position)?.price?.toDouble())
+        val twoDigitPrice = String.format("%.2f", dataSet?.get(position)?.price?.toDouble())
         viewHolder.price.text = "${twoDigitPrice}$"
         viewHolder.img.loadSvgOrOthers(dataSet?.get(position)?.iconUrl)
         viewHolder.pos = position
-        val twoDigitChange = "${String.format("%.2f", dataSet?.get(position)?.change?.toDouble())}%"
-        viewHolder.change.text = twoDigitChange
+        val twoDigitChange = String.format("%.2f", dataSet?.get(position)?.change?.toDouble())
+        viewHolder.change.text = "${twoDigitChange}%"
+        if (twoDigitChange.toDouble() < 0) {
+            viewHolder.change.setTextColor(Color.RED)
+        } else {
+            viewHolder.change.setTextColor(Color.GREEN)
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
