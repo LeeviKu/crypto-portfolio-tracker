@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
-class MyOnClickListener(val viewHolder: CustomAdapter.ViewHolder, val activity: AppCompatActivity, val dataSet: List<CoinX>?) : View.OnClickListener {
+class ListOnClickListener(val viewHolder: CryptoListAdapter.ViewHolder, val activity: AppCompatActivity, val dataSet: List<CoinX>?) : View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (activity.localClassName == "MainActivity") {

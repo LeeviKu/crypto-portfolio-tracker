@@ -15,7 +15,7 @@ import coil.decode.SvgDecoder
 import coil.request.LoadRequest
 import java.util.*
 
-class CustomAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatActivity) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CryptoListAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatActivity) : RecyclerView.Adapter<CryptoListAdapter.ViewHolder>() {
 
     /**
      * Provide a reference to the type of views that you are using
@@ -39,7 +39,7 @@ class CustomAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatAc
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item, viewGroup, false)
         val vHolder = ViewHolder(view)
-        val myOnClickListener: View.OnClickListener = MyOnClickListener(vHolder, activity, dataSet)
+        val myOnClickListener: View.OnClickListener = ListOnClickListener(vHolder, activity, dataSet)
         view.setOnClickListener(myOnClickListener)
         return vHolder
     }
@@ -52,7 +52,7 @@ class CustomAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatAc
         Log.d("test", dataSet?.get(position)?.name.toString())
         viewHolder.name.text = dataSet?.get(position)?.name
         val twoDigitPrice = String.format("%.2f", dataSet?.get(position)?.price?.toDouble())
-        viewHolder.price.text = "${twoDigitPrice}$"
+        viewHolder.price.text = "$${twoDigitPrice}"
         viewHolder.img.loadSvgOrOthers(dataSet?.get(position)?.iconUrl)
         viewHolder.pos = position
         val twoDigitChange = String.format("%.2f", dataSet?.get(position)?.change?.toDouble())

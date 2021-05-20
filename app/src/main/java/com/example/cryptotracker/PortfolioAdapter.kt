@@ -46,7 +46,7 @@ class PortfolioAdapter(private val dataSet: List<Holding>?, val activity: AppCom
         if (dataSet != null) {
             holder.name.text = dataSet[position].name
             holder.amount.text = dataSet[position].amount
-            holder.price.text = dataSet[position].price
+            holder.price.text = "$${dataSet[position].price}"
         }
     }
         // Return the size of your dataset (invoked by the layout manager)

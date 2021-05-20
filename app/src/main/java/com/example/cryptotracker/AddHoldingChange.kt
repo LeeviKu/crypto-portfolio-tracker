@@ -39,7 +39,7 @@ class AddHoldingChange : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun addHolding(v: View) {
+    fun addHolding() {
         var sharedPreferences = getSharedPreferences("holdings", MODE_PRIVATE)
         var amountOfCoins = amount.text.toString()
         var pricePerCoin = price.text.toString()

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +21,7 @@ import kotlin.concurrent.thread
 
 class ChooseHoldingToChange : AppCompatActivity() {
     lateinit var listView: RecyclerView
-    lateinit var itemsAdapter: CustomAdapter
+    lateinit var itemsAdapter: CryptoListAdapter
     lateinit var pageNumberView: TextView
     lateinit var previousButton: Button
     lateinit var searchTextInput: TextInputEditText
@@ -55,9 +54,9 @@ class ChooseHoldingToChange : AppCompatActivity() {
             if (it !== null) {
                 data = it
             }
-            itemsAdapter = CustomAdapter(it, this)
+            itemsAdapter = CryptoListAdapter(it, this)
             listView.adapter = itemsAdapter
-            (listView.adapter as CustomAdapter).notifyDataSetChanged()
+            (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
         }
 
     }
@@ -77,16 +76,16 @@ class ChooseHoldingToChange : AppCompatActivity() {
         }
     }
 
-    fun nextPage(view : View) {
+    fun nextPage() {
         previousButton.isEnabled = true
         pageNumber += 1
         val offset = pageNumber * 100
         val url = URL("https://api.coinranking.com/v2/coins?limit=100&offset=${offset}")
         pageNumberView.text = "page ${pageNumber + 1}"
         urlToCoins(url) {
-            itemsAdapter = CustomAdapter(it, this)
+            itemsAdapter = CryptoListAdapter(it, this)
             listView.adapter = itemsAdapter
-            (listView.adapter as CustomAdapter).notifyDataSetChanged()
+            (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
         }
     }
 
@@ -103,15 +102,15 @@ class ChooseHoldingToChange : AppCompatActivity() {
             }
             Log.d("lol", urlString)
             urlToCoins(URL(urlString)) {
-                itemsAdapter = CustomAdapter(it, this)
+                itemsAdapter = CryptoListAdapter(it, this)
                 listView.adapter = itemsAdapter
-                (listView.adapter as CustomAdapter).notifyDataSetChanged()
+                (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
             }
 
         }
     }
 
-    fun previousPage(view : View) {
+    fun previousPage() {
         pageNumber -= 1
         if (pageNumber < 1) {
             previousButton.isEnabled = false
@@ -120,16 +119,16 @@ class ChooseHoldingToChange : AppCompatActivity() {
         val url = URL("https://api.coinranking.com/v2/coins?limit=100&offset=${offset}")
         pageNumberView.text = "page ${pageNumber + 1}"
         urlToCoins(url) {
-            itemsAdapter = CustomAdapter(it, this)
+            itemsAdapter = CryptoListAdapter(it, this)
             listView.adapter = itemsAdapter
-            (listView.adapter as CustomAdapter).notifyDataSetChanged()
+            (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
         }
     }
     fun URL.downloadUrl() : String {
         try {
             val connection = this.openConnection() as HttpURLConnection
             val inputStream = connection.inputStream
-            var result = ""
+            var result: String
             inputStream.use {
                 result = IOUtils.toString(it, StandardCharsets.UTF_8)
             }

@@ -30,9 +30,9 @@ class CoinActivity() : AppCompatActivity() {
         var change = String.format("%.2f", intent.getStringExtra("change")?.toDouble())
         marketCap = NumberFormat.getNumberInstance(Locale.US).format(marketCap.toBigInteger())
         volume = NumberFormat.getNumberInstance(Locale.US).format(volume.toBigInteger())
-        marketCapView.text = "Market cap: ${marketCap}$"
-        volumeView.text = "Volume 24h: ${volume}$"
-        priceView.text = "Price: ${price}$"
+        marketCapView.text = "Market cap: $${marketCap}"
+        volumeView.text = "Volume 24h: $${volume}"
+        priceView.text = "Price: $${price}"
         changeView.text = "Change 24h: ${change}%"
     }
 

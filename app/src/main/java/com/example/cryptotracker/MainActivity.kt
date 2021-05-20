@@ -22,7 +22,7 @@ import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
         lateinit var listView: RecyclerView
-        lateinit var itemsAdapter: CustomAdapter
+        lateinit var itemsAdapter: CryptoListAdapter
         lateinit var pageNumberView: TextView
         lateinit var previousButton: Button
         lateinit var searchTextInput: TextInputEditText
@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity() {
                 if (it !== null) {
                     data = it
                 }
-                itemsAdapter = CustomAdapter(it, this)
+                itemsAdapter = CryptoListAdapter(it, this)
                 listView.adapter = itemsAdapter
-                (listView.adapter as CustomAdapter).notifyDataSetChanged()
+                (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
             }
 
         }
@@ -93,9 +93,9 @@ class MainActivity : AppCompatActivity() {
             val url = URL("https://api.coinranking.com/v2/coins?limit=100&offset=${offset}")
             pageNumberView.text = "page ${pageNumber + 1}"
             urlToCoins(url) {
-                itemsAdapter = CustomAdapter(it, this)
+                itemsAdapter = CryptoListAdapter(it, this)
                 listView.adapter = itemsAdapter
-                (listView.adapter as CustomAdapter).notifyDataSetChanged()
+                (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
             }
         }
 
@@ -112,9 +112,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 Log.d("lol", urlString)
                 urlToCoins(URL(urlString)) {
-                    itemsAdapter = CustomAdapter(it, this)
+                    itemsAdapter = CryptoListAdapter(it, this)
                     listView.adapter = itemsAdapter
-                    (listView.adapter as CustomAdapter).notifyDataSetChanged()
+                    (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
                 }
 
             }
@@ -129,9 +129,9 @@ class MainActivity : AppCompatActivity() {
             val url = URL("https://api.coinranking.com/v2/coins?limit=100&offset=${offset}")
             pageNumberView.text = "page ${pageNumber + 1}"
             urlToCoins(url) {
-                itemsAdapter = CustomAdapter(it, this)
+                itemsAdapter = CryptoListAdapter(it, this)
                 listView.adapter = itemsAdapter
-                (listView.adapter as CustomAdapter).notifyDataSetChanged()
+                (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
             }
         }
         fun URL.downloadUrl() : String {
