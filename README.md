@@ -16,3 +16,16 @@ Release 1:
 - fetch data
 - pagination
 - listview of coins with images, names and prices
+
+release 2:
+- You can click on coins and view them
+- you can view your portfolio
+- you can add coins to your portfolio
+- you can sell coins from your portfolio
+- you can search coins
+
+known bugs:
+- If you search too much api limits fetches because too many fetches too fast
+
+## Screencast
+[Screencast](https://www.youtube.com/watch?v=MjoX0PjQZJQ "screencast")
