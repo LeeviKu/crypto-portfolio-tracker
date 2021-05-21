@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,20 +20,18 @@ import java.net.URL
 import java.nio.charset.StandardCharsets
 import kotlin.concurrent.thread
 
+/**
+ * Activity class for choosing crpyto you want to add to your portfolio
+ */
 class ChooseHoldingToChange : AppCompatActivity() {
     lateinit var listView: RecyclerView
     lateinit var itemsAdapter: CryptoListAdapter
-    lateinit var pageNumberView: TextView
-    lateinit var previousButton: Button
     lateinit var searchTextInput: TextInputEditText
     lateinit var data: List<CoinX>
-    var pageNumber = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.choose_holding_to_change)
         listView = findViewById(R.id.listView)
-        pageNumberView = findViewById(R.id.pageNumber)
-        previousButton = findViewById(R.id.button)
         searchTextInput = findViewById(R.id.searchTextInput)
         searchTextInput.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -48,7 +47,6 @@ class ChooseHoldingToChange : AppCompatActivity() {
             }
 
         })
-        previousButton.isEnabled = false
         val url = URL("https://api.coinranking.com/v2/coins?limit=100")
         urlToCoins(url) {
             if (it !== null) {
@@ -61,11 +59,15 @@ class ChooseHoldingToChange : AppCompatActivity() {
 
     }
 
+    /**
+     * parses coinranking url can calls callback(data: List<CoinX>?)
+     *
+     * @param url url to parse
+     * @param callback callback function that is called after parsing
+     */
     fun urlToCoins(url : URL, callback: (coins: List<CoinX>?) -> Unit) {
         thread {
-            Log.d("alol", url.toString())
             val result = url.downloadUrl()
-            Log.d("asd", result)
             if (result != "") {
                 val mp = jacksonObjectMapper()
                 val coin = mp.readValue<Coin>(result)
@@ -76,19 +78,11 @@ class ChooseHoldingToChange : AppCompatActivity() {
         }
     }
 
-    fun nextPage() {
-        previousButton.isEnabled = true
-        pageNumber += 1
-        val offset = pageNumber * 100
-        val url = URL("https://api.coinranking.com/v2/coins?limit=100&offset=${offset}")
-        pageNumberView.text = "page ${pageNumber + 1}"
-        urlToCoins(url) {
-            itemsAdapter = CryptoListAdapter(it, this)
-            listView.adapter = itemsAdapter
-            (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
-        }
-    }
-
+    /**
+     * parses url with searchword and puts it into recycleView
+     *
+     * @param searchWord word you want to search with
+     */
     fun searchCoins(searchWord: String) {
         var url = URL("https://api.coinranking.com/v2/search-suggestions?query=${searchWord}")
         urlToCoins(url) {
@@ -110,20 +104,9 @@ class ChooseHoldingToChange : AppCompatActivity() {
         }
     }
 
-    fun previousPage() {
-        pageNumber -= 1
-        if (pageNumber < 1) {
-            previousButton.isEnabled = false
-        }
-        val offset = pageNumber * 100
-        val url = URL("https://api.coinranking.com/v2/coins?limit=100&offset=${offset}")
-        pageNumberView.text = "page ${pageNumber + 1}"
-        urlToCoins(url) {
-            itemsAdapter = CryptoListAdapter(it, this)
-            listView.adapter = itemsAdapter
-            (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
-        }
-    }
+    /**
+     * Creates HTTPURLConnection and downloads data form URL
+     */
     fun URL.downloadUrl() : String {
         try {
             val connection = this.openConnection() as HttpURLConnection
@@ -134,7 +117,7 @@ class ChooseHoldingToChange : AppCompatActivity() {
             }
             return result
         } catch (e: Exception) {
-            Log.d("errro", "no file found")
+            Log.d("error", "no file found")
         }
         return ""
     }

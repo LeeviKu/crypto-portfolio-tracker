@@ -1,7 +1,9 @@
 package com.example.cryptotracker
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-
+/**
+ * Data classes for json parsing
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Coin(
     val `data`: Data?,

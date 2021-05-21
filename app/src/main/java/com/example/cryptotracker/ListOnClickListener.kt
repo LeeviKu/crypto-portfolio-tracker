@@ -5,12 +5,14 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * On click listener for both recycleViews
+ */
 class ListOnClickListener(val viewHolder: CryptoListAdapter.ViewHolder, val activity: AppCompatActivity, val dataSet: List<CoinX>?) : View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (activity.localClassName == "MainActivity") {
             val intent = Intent(activity, CoinActivity::class.java)
-            Log.d("data", viewHolder.pos.toString())
             intent.putExtra("name", dataSet?.get(viewHolder.pos)?.name)
             intent.putExtra("marketCap", dataSet?.get(viewHolder.pos)?.marketCap)
             intent.putExtra("volume", dataSet?.get(viewHolder.pos)?.`24hVolume`)

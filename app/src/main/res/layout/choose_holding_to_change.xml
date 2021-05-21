@@ -12,18 +12,6 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <!--
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="92dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="Search"
-            app:layout_constraintBottom_toTopOf="@+id/change"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/searchLayout" />
-             -->
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchLayout"
             android:layout_width="match_parent"
@@ -60,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/nextPage"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,16 +56,6 @@
             app:layout_constraintVertical_bias="0.0">
 
         </androidx.recyclerview.widget.RecyclerView>
-
-        <Button
-            android:id="@+id/nextPage"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:onClick="nextPage"
-            android:text="Next page"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/listView" />
 
         <TextView
             android:id="@+id/priceTextView"
@@ -104,28 +82,6 @@
             app:layout_constraintBottom_toTopOf="@+id/listView"
             app:layout_constraintStart_toEndOf="@+id/priceTextView"
             app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:onClick="previousPage"
-            android:text="Previous page"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/pageNumber"
-            android:layout_width="80dp"
-            android:layout_height="49dp"
-            android:gravity="center"
-            android:text="page 1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/nextPage"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toTopOf="@+id/listView"
-            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/chooseCryptoHeader"

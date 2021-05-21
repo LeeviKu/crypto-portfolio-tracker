@@ -17,8 +17,7 @@ import java.util.*
 class PortfolioAdapter(private val dataSet: List<Holding>?, val activity: AppCompatActivity) : RecyclerView.Adapter<PortfolioAdapter.ViewHolder>() {
 
     /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
+     * ViewHolder for recycleView
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.holdingName)
@@ -29,7 +28,7 @@ class PortfolioAdapter(private val dataSet: List<Holding>?, val activity: AppCom
         init {}
     }
 
-    // Create new views (invoked by the layout manager)
+    // Create new views
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
@@ -37,19 +36,15 @@ class PortfolioAdapter(private val dataSet: List<Holding>?, val activity: AppCom
         return ViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Replace the contents of a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        Log.d("asd", dataSet?.get(position).toString())
         if (dataSet != null) {
             holder.name.text = dataSet[position].name
             holder.amount.text = dataSet[position].amount
             holder.price.text = "$${dataSet[position].price}"
         }
     }
-        // Return the size of your dataset (invoked by the layout manager)
+        // Return the size of your dataset
         override fun getItemCount() = dataSet!!.size
 
 }

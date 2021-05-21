@@ -15,11 +15,13 @@ import coil.decode.SvgDecoder
 import coil.request.LoadRequest
 import java.util.*
 
+/**
+ * Custom recyclerView adapter for displaying crypto currrencies
+ */
 class CryptoListAdapter(private val dataSet: List<CoinX>?, val activity: AppCompatActivity) : RecyclerView.Adapter<CryptoListAdapter.ViewHolder>() {
 
     /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
+     * Custom ViewHolder
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.listName)
@@ -28,12 +30,9 @@ class CryptoListAdapter(private val dataSet: List<CoinX>?, val activity: AppComp
         val change: TextView = view.findViewById(R.id.listChange)
         var pos = -1
 
-        init {
-            // Define click listener for the ViewHolder's View.
-        }
     }
 
-    // Create new views (invoked by the layout manager)
+    // Create new views
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
@@ -44,12 +43,8 @@ class CryptoListAdapter(private val dataSet: List<CoinX>?, val activity: AppComp
         return vHolder
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Replace the contents of a view
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        Log.d("test", dataSet?.get(position)?.name.toString())
         viewHolder.name.text = dataSet?.get(position)?.name
         val twoDigitPrice = String.format("%.2f", dataSet?.get(position)?.price?.toDouble())
         viewHolder.price.text = "$${twoDigitPrice}"
@@ -64,9 +59,14 @@ class CryptoListAdapter(private val dataSet: List<CoinX>?, val activity: AppComp
         }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // Return the size of your dataset
     override fun getItemCount() = dataSet!!.size
 
+    /**
+     * Loads Svg image and puts it into given ImageView
+     *
+     * @param myUrl url to download svg from
+     */
     fun ImageView.loadSvgOrOthers(myUrl: String?) {
         myUrl?.let {
             if (it.toLowerCase(Locale.ENGLISH).endsWith("svg")) {

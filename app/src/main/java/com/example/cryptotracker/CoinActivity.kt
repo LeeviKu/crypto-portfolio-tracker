@@ -9,6 +9,9 @@ import java.net.URL
 import java.text.NumberFormat
 import java.util.*
 
+/**
+ * Activity class for chosen crypto currency
+ */
 class CoinActivity() : AppCompatActivity() {
     lateinit var nameView: TextView
     lateinit var marketCapView: TextView

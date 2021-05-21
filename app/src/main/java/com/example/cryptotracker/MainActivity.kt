@@ -20,6 +20,9 @@ import java.net.URL
 import java.nio.charset.StandardCharsets
 import kotlin.concurrent.thread
 
+/**
+ * Main activity class
+ */
 class MainActivity : AppCompatActivity() {
         lateinit var listView: RecyclerView
         lateinit var itemsAdapter: CryptoListAdapter
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             pageNumberView = findViewById(R.id.pageNumber)
             previousButton = findViewById(R.id.button)
             searchTextInput = findViewById(R.id.searchTextInput)
+            // listener for search bar
             searchTextInput.addTextChangedListener(object: TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
 
@@ -51,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             })
             previousButton.isEnabled = false
             val url = URL("https://api.coinranking.com/v2/coins?limit=100")
+            // parse json data and insert it into recycleView
             urlToCoins(url) {
                 if (it !== null) {
                     data = it
@@ -66,6 +71,12 @@ class MainActivity : AppCompatActivity() {
             //Do nothing
         }
 
+        /**
+         * parses coinranking url can calls callback(data: List<CoinX>?)
+         *
+         * @param url url to parse
+         * @param callback callback function that is called after parsing
+         */
         fun urlToCoins(url : URL, callback: (coins: List<CoinX>?) -> Unit) {
             thread {
                 Log.d("alol", url.toString())
@@ -81,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // onClick function for portfolio button
         fun openPortfolio(View: View) {
             val intent = Intent(this, Portfolio::class.java)
             startActivity(intent)
@@ -98,7 +110,11 @@ class MainActivity : AppCompatActivity() {
                 (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
             }
         }
-
+        /**
+         * parses url with searchword and puts it into recycleView
+         *
+         * @param searchWord word you want to search with
+         */
         fun searchCoins(searchWord: String) {
             var url = URL("https://api.coinranking.com/v2/search-suggestions?query=${searchWord}")
             urlToCoins(url) {
@@ -110,7 +126,6 @@ class MainActivity : AppCompatActivity() {
                 uuids.forEach {
                     urlString += "uuids[]=$it&"
                 }
-                Log.d("lol", urlString)
                 urlToCoins(URL(urlString)) {
                     itemsAdapter = CryptoListAdapter(it, this)
                     listView.adapter = itemsAdapter
@@ -134,6 +149,12 @@ class MainActivity : AppCompatActivity() {
                 (listView.adapter as CryptoListAdapter).notifyDataSetChanged()
             }
         }
+
+        /**
+         * Creates HTTPURLConnection and downloads data form URL
+         *
+         * @return returns data from given URL
+         */
         fun URL.downloadUrl() : String {
             try {
                 val connection = this.openConnection() as HttpURLConnection

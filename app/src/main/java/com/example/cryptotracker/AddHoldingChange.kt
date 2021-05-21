@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.google.android.material.textfield.TextInputEditText
 
-
+/**
+ * Activity class for adding  or removing holdings
+ */
 class AddHoldingChange : AppCompatActivity() {
     lateinit var name: TextView
     lateinit var switch: Switch
@@ -39,7 +41,10 @@ class AddHoldingChange : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun addHolding() {
+    /**
+     * Adds holding to sharedPreferences
+     */
+    fun addHolding(view: View) {
         var sharedPreferences = getSharedPreferences("holdings", MODE_PRIVATE)
         var amountOfCoins = amount.text.toString()
         var pricePerCoin = price.text.toString()
