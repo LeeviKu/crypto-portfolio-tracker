@@ -1,4 +1,4 @@
-# Evaluation
+# Vertaisarviointi
 
 |            |               |
 | ---------- | ------------- |
@@ -13,9 +13,9 @@ Sovellus kaatuu avattaessa ja android studio antaa virheen "java.lang.NumberForm
 
 Sovellus kaatuu myös mikäli hakuehdoksi laittaa tekstiä mitä ei haetusta datasta löydy.
 
-Kryptovaluuttojen selaus on selkeästi näkyvillä ja niiden haku on tehty helpoksi. Listauksessa näkyy olennaisimmat tiedot ja painamalla valuuttaa avautuu uusi näkymä missä on tarkempia tietoja.
+Kryptovaluuttojen selaus on selkeästi näkyvillä ja niiden haku on tehty helpoksi. Listauksessa näkyy olennaisimmat tiedot ja painamalla valuuttaa avautuu uusi näkymä missä on muita valuuttaan liittyviä tietoja.
 
-My portfolioon ostaminen on tehty hyvin mutta myymisessä täytyy ensin etsiä valuutta listasta ja sen jälkeen laittaa myyntimäärä. Nykyinen valuuttamäärä mitä on ostettuna voisi näkyä valitun valuutan näkymässä.
+My portfolioon ostaminen on tehty hyvin, mutta myymisessä täytyy ensin etsiä valuutta listasta ja sen jälkeen laittaa myyntimäärä. Nykyinen valuuttamäärä mitä on ostettuna voisi näkyä valitun valuutan näkymässä.
 
 My portfoliossa näkyviä valuuttoja ei pysty painamaan, paremman käytettävyyden puolesta näitä painamalla voisi avautua suoraan näkymä, mistä voisi kyseistä valuuttaa myydä tai ostaa.
 
