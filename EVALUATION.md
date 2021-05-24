@@ -7,8 +7,6 @@
 
 ## Käytettävyys
 
----
-
 Sovellus kaatuu avattaessa ja android studio antaa virheen "java.lang.NumberFormatException: For input string: "10,10"", sovellus lähtee toimimaan vaihtamalla puhelimen käyttökieleksi englanti.
 
 Sovellus kaatuu myös mikäli hakuehdoksi laittaa tekstiä mitä ei haetusta datasta löydy.
@@ -23,21 +21,15 @@ Kokonaisuudessaan käyttöliittymä on selkeä ja helppo käyttää poislukien o
 
 ## Tekniset ominaisuudet(vaikeusaste)
 
----
-
 Teknisiltä ominaisuuksilta koodi on 3/5. Koodissa on käytetty tallennusta puhelimen sisäiseen muistiin, datan filtteröintiä käyttäjän syötteen mukaan ja tehty omat adapterit recyclerviewille
 
 ## Dokumentaatio
-
----
 
 Koodin kommentointi on tehty hyvin, tarvittavat funktiot on kommentoitu sisältäen selitykset myös funktion parametreille.
 
 README.md tiedostosta löytyy vain pakolliset tiedot. README.md:hen olisi voinut sisällyttää sovelluksen käyttöohjeet, kuvia sovelluksesta ja sovelluksessa käytetyt kirjastot.
 
 ## Koodin laatu
-
----
 
 Koodissa muuttujien nimeäminen oli hyvää, niistä ei tarvitse arvailla mihin niitä käytetään.
 
@@ -46,8 +38,6 @@ Koodia on pilkottu hyvin osiin ja tehty funktioita uudelleen käytettävälle ko
 Koodista voisi vielä siistiä ylimääräiset importit ja turhat logitukset pois.
 
 ## Yleiset arviointikriteerit
-
----
 
 Projektia ajettaessa puhelimelle ei sovellus toiminut suoraan vaan vaati laitteen kielen muuttamista englanniksi (Taitaa johtua , ja . käyttöeroista eri maiden välillä).
 
